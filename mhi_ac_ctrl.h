@@ -197,6 +197,7 @@ public:
             // output_P(status, PSTR(TOPIC_IU_FANSPEED), strtmp);
             break;
         case opdata_total_iu_run:
+             total_iu_run_.publish_state(value);
         case erropdata_total_iu_run:
             itoa(value * 100, strtmp, 10);
             // output_P(status, PSTR(TOPIC_TOTAL_IU_RUN), strtmp);
@@ -271,7 +272,7 @@ public:
     }
 
     std::vector<Sensor *> get_sensors() {
-        return { &error_code_, &outdoor_temperature_, &iu_fanspeed };
+        return { &error_code_, &outdoor_temperature_, &iu_fanspeed_, total_iu_run_. };
     }
 
     std::vector<BinarySensor *> get_binary_sensors() {
@@ -395,5 +396,6 @@ protected:
     Sensor error_code_ { "Error code" };
     Sensor outdoor_temperature_ { "Outdoor temperature" };
     Sensor iu_fanspeed_ { "Indoor fan speed" };
+    Sensor total_iu_run_ { "Total indoor unit runtime" };
     BinarySensor defrost_ { "Defrost" };
 };
