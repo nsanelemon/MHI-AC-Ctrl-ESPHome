@@ -272,7 +272,7 @@ public:
     }
 
     std::vector<Sensor *> get_sensors() {
-        return { &error_code_, &outdoor_temperature_, &iu_fanspeed_, total_iu_run_ };
+        return { &error_code_, &outdoor_temperature_, &iu_fanspeed_, &total_iu_run_ };
     }
 
     std::vector<BinarySensor *> get_binary_sensors() {
