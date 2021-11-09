@@ -191,7 +191,7 @@ public:
             // output_P(status, PSTR(TOPIC_THI_R3), strtmp);
             break;
         case opdata_iu_fanspeed:
-            iu_fanspeed_.publish_state((value);
+            iu_fanspeed_.publish_state(value);
         case erropdata_iu_fanspeed:
             itoa(value, strtmp, 10);
             // output_P(status, PSTR(TOPIC_IU_FANSPEED), strtmp);
