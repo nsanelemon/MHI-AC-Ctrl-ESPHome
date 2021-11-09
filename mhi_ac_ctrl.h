@@ -31,6 +31,9 @@ public:
         outdoor_temperature_.set_icon("mdi:thermometer");
         outdoor_temperature_.set_unit_of_measurement("°C");
         outdoor_temperature_.set_accuracy_decimals(1);
+      
+        iu_fanspeed_.set_unit_of_measurement("RPM");
+      iu_fanspeed_.set_icon("mdi:fan");
 
         mhi_ac_ctrl_core.MHIAcCtrlStatus(this);
         mhi_ac_ctrl_core.init();
@@ -188,6 +191,7 @@ public:
             // output_P(status, PSTR(TOPIC_THI_R3), strtmp);
             break;
         case opdata_iu_fanspeed:
+            iu_fanspeed_.publish_state((value);
         case erropdata_iu_fanspeed:
             itoa(value, strtmp, 10);
             // output_P(status, PSTR(TOPIC_IU_FANSPEED), strtmp);
@@ -267,7 +271,7 @@ public:
     }
 
     std::vector<Sensor *> get_sensors() {
-        return { &error_code_, &outdoor_temperature_ };
+        return { &error_code_, &outdoor_temperature_, &iu_fanspeed };
     }
 
     std::vector<BinarySensor *> get_binary_sensors() {
@@ -390,5 +394,6 @@ protected:
 
     Sensor error_code_ { "Error code" };
     Sensor outdoor_temperature_ { "Outdoor temperature" };
+    Sensor iu_fanspeed_ { "Indoor fan speed" };
     BinarySensor defrost_ { "Defrost" };
 };
